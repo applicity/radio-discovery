@@ -1,0 +1,18 @@
+{
+  "name": "radio_automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "influx": "^5.6.2",
+    "node-upnp-utils": "0.0.5",
+    "strong-soap": "^2.0.0",
+    "upnp-mediarenderer-client": "^1.4.0",
+    "yargs": "^15.4.1"
+  }
+}
