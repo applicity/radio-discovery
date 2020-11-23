@@ -1,6 +1,11 @@
 var Client = require("upnp-device-client");
 const fs = require("fs");
-const argv = require("yargs").demandOption(["ip"]).argv;
+const argv = require("yargs")
+  .option("ip", { describe: "The ip address of the radio" })
+  .option("tibo", { describe: "Settings for Tibo radio" })
+  .boolean("tibo")
+  .default("tibo", false)
+  .demandOption(["ip"]).argv;
 
 const ip = argv.ip;
 
@@ -19,7 +24,7 @@ client.getDeviceDescription(function (err, description) {
 //   console.log(description);
 // });
 
-const xml = fs.readFileSync("./saved/radiowey3");
+const xml = fs.readFileSync(`./saved/${argv.tibo ? "tibo" : "radiowey3"}`);
 
 // Call GetMediaInfo on the AVTransport service
 const params = {
