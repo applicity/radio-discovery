@@ -4,15 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "report": "node report.js",
+    "pm2": "PORT=5050 pm2 --name=scan --cron-restart=\"55 19 * * *\" start report.js",
+    "postinstall": "patch-package"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "influx": "^5.6.2",
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.0.0",
     "node-upnp-utils": "0.0.5",
+    "patch-package": "^6.4.7",
+    "pino": "^7.6.2",
     "strong-soap": "^2.0.0",
     "upnp-mediarenderer-client": "^1.4.0",
+    "winston": "^3.3.3",
     "yargs": "^15.4.1"
   }
 }
