@@ -1,4 +1,4 @@
-=RadioWey - Radio Discovery
+= RadioWey - Radio Discovery
 
 This repository contains the files used for discovering the radios on the 
 hospital network.
