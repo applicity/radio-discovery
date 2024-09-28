@@ -1,4 +1,4 @@
-= RadioWey - Radio Discovery
+# RadioWey - Radio Discovery
 
 This repository contains the files used for discovering the radios on the 
 hospital network.
@@ -58,11 +58,11 @@ which should show you something like this:
 
 Which shows that we are sending reports to the datastore.
 
-== Other functions
+## Other functions
 
 This directory also contains some useful functions for managing radio state.
 
-=== Manual discover
+### Manual discover
 
 ```
 node discover.js
@@ -70,7 +70,7 @@ node discover.js
 
 This runs the discovery process and will dump out the responses from the discovery without looking up details
 
-=== Radio status
+### Radio status
 ```
 node get-status.js --ip x.x.x.x
 ```
@@ -86,7 +86,7 @@ For example:
   CurrentSpeed: '1' }
 ```
 
-=== Get volume
+### Get volume
 
 Get volume - shows the current volume that the radio is set at
 
@@ -95,7 +95,7 @@ Get volume - shows the current volume that the radio is set at
 45
 ```
 
-=== Get detail
+### Get detail
 
 Returns the full details of the status of the radio
 
@@ -123,7 +123,7 @@ For example
 ```
 
 
-=== Play
+### Play
 
 Make a radio play the radio wey stream
 
@@ -132,7 +132,7 @@ node play.js --ip 192.168.13.108
 ```
 
 
-=== Stop
+### Stop
 
 Stop a radio from playing
 
@@ -141,7 +141,7 @@ Stop a radio from playing
 node stop.js --ip x.x.x.x
 ```
 
-=== Set presets
+### Set presets
 
 Load the presets on the radio to be all radiowey
 
@@ -149,7 +149,7 @@ Load the presets on the radio to be all radiowey
 node set-presets.js --ip x.x.x.x
 ```
 
-=== Set volume
+### Set volume
 
 Set the volume of the radio
 
@@ -159,7 +159,7 @@ node set-volume.js --ip x.x.x.x --vol 50
 
 The volume is a number between 0 and 100, with 100 being very loud.
 
-=== List Presets
+### List Presets
 
 ```
 node list-preset.js --ip x.x.x.x
@@ -168,7 +168,7 @@ node list-preset.js --ip x.x.x.x
 Shows an XML dump of the presets currently loaded in the radio
 
 
-== Important
+## Important
 
 For any of the above to work the network configuation needs to have a route
 correctly set to send data to the hospital network to see the radios.
