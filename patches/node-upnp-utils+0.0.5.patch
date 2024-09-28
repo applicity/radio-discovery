@@ -1,0 +1,29 @@
+diff --git a/node_modules/node-upnp-utils/lib/node-upnp-utils.js b/node_modules/node-upnp-utils/lib/node-upnp-utils.js
+index 8113870..b63f276 100644
+--- a/node_modules/node-upnp-utils/lib/node-upnp-utils.js
++++ b/node_modules/node-upnp-utils/lib/node-upnp-utils.js
+@@ -53,7 +53,7 @@ var m_xml2js = null;
+ try {
+ 	m_xml2js = require('xml2js');
+ } catch(e) {
+-
++ console.error(e);
+ }
+ 
+ var UPnPUtils = function() {
+@@ -430,9 +430,14 @@ UPnPUtils.prototype._udpSocketListener = function(buffer, rinfo) {
+ 			this.devices[usn] = {
+ 				'address': rinfo.address,
+ 				'headers': headers,
+-				'expire' : expire
++				'expire' : expire,
+ 			};
+ 			this._fetchDeviceDescriptions(loc, (xml, obj) => {
++			  this.devices[usn] = {
++				  'address': rinfo.address,
++				  'headers': headers,
++				  'expire' : expire,
++			  };
+ 				this.devices[usn]['description'] = obj;
+ 				this.devices[usn]['descriptionXML'] = xml;
+ 				this.emit('added', JSON.parse(JSON.stringify(this.devices[usn])));

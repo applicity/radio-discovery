@@ -1,0 +1,21 @@
+diff --git a/node_modules/upnp-device-client/index.js b/node_modules/upnp-device-client/index.js
+index cf25874..7437889 100644
+--- a/node_modules/upnp-device-client/index.js
++++ b/node_modules/upnp-device-client/index.js
+@@ -73,9 +73,13 @@ DeviceClient.prototype.getServiceDescription = function(serviceId, callback) {
+     debug('fetch service description (%s)', serviceId);
+     fetch(service.SCPDURL, function(err, body) {
+       if(err) return callback(err);
+-      var desc = parseServiceDescription(body);
+-      self.serviceDescriptions[serviceId] = desc; // Store in cache for next call
+-      callback(null, desc);
++      try {
++        var desc = parseServiceDescription(body);
++        self.serviceDescriptions[serviceId] = desc; // Store in cache for next call
++        callback(null, desc);
++      } catch (err) {
++        return callback(err);
++      }
+     });
+   });
+ };

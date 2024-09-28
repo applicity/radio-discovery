@@ -35,8 +35,12 @@ const getDetails = (ip) => {
 // Instanciate a client with a device description URL (discovered by SSDP)
 var client = new MediaRendererClient(`http://${ip}:49152/description.xml`);
 
-client.getTransportInfo(function(err, volume) {
-  if(err) throw err;
-   console.log(volume); // the volume range is 0-100
-});
+
+const main =  async () => {
+  const details = await getDetails(ip);
+  details.ip = ip;
+  console.log(details);
+};
+
+main();
 
