@@ -13,12 +13,31 @@ var client = new MediaRendererClient(`http://${ip}:49152/description.xml`);
 var options = {
   autoplay: true,
   contentType: 'audio/mpeg',
+  // 'upnp:albumArtURI': 'http://cdn-profiles.tunein.com/s107544/images/logog.png?t=636426232223100000',
+  // 'dc:subtitle': 'AUTO Working with your hospital and community',
 
   metadata: {
-    title: 'Radio Wey Automatic',
-    subtitle: 'Working with your hospital and community',
-    creator: 'Radio Wey',
-    type: 'object.item.audioItem.musicTrack',
+    dc: {
+      // subtitle: 'Foo bar',
+      'title': 'SAM Radio Wey Automatic',
+      'subtitle': 'SAM Working with your hospital and community',
+    },
+    upnp: {
+      'albumArtURI': 'http://cdn-profiles.tunein.com/s107544/images/logog.png?t=636426232223100000',
+      class: 'object.item.audioItem.musicTrack',
+      mediatype: 'mp3',
+    },
+    song: {
+      isLive: 1,
+      canPlay: 1,
+      id: 's107544',
+      singerid: '0',
+      albumid: '0',
+    },
+    // 'upnp:albumArtURI': 'http://cdn-profiles.tunein.com/s107544/images/logog.png?t=636426232223100000',
+    // creator: 'Radio Wey',
+    // 'song:isLive': '1',
+    // type: 'object.item.audioItem.musicTrack',
     protocolInfo: 'http-get:*:audio/mpeg:DLNA.ORG_PN=MP3;DLNA.ORG_OP=01;',
     // type: 'audio', // can be 'video', 'audio' or 'image'
     // subtitlesUrl: 'http://url.to.some/subtitles.srt'

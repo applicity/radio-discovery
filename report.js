@@ -60,7 +60,23 @@ const getDetails = (ip) => {
 
         client.callAction('AVTransport', 'GetMediaInfo', { InstanceID: 0 }, function(err3, media) {
           if(err3) return rej(err3);
-          return res({volume, transportInfo, media })
+
+
+          client.callAction(
+            "RenderingControl",
+            // "urn:upnp-org:serviceId:RenderingControl",
+            "GetControlDeviceInfo",
+            { InstanceID: 0 },
+            function (err4, result) {
+              if (err4) return rej(err4);
+              const statusText = result.Status
+              const status = JSON.parse(statusText)
+              // console.log(status)
+              // console.log(result); // => { NrTracks: '1', MediaDuration: ... }
+              return res({volume, transportInfo, media, deviceStatus: status })
+            }
+          );
+
         });
 
       });
@@ -128,7 +144,7 @@ const reportAllData = async () => {
     console.log('Reporting', report);
     const details = await getDetails(report.ip);
 
-    const { volume, transportInfo, media } = details;
+    const { volume, transportInfo, media, deviceStatus } = details;
 
     const state = transportInfo.CurrentTransportState;
     const status = transportInfo.CurrentTransportStatus;
@@ -136,7 +152,7 @@ const reportAllData = async () => {
 
           // reports.push({name, radio_type, ip, volume, status, state, uri});
 
-    const res = await reportData({...report, volume, status, state, uri});
+    const res = await reportData({...report, volume, status, state, uri, rssi: deviceStatus?.RSSI});
     // console.log('Res', res);
     count += 1;
   }
@@ -177,5 +193,6 @@ cron.schedule(schedule, () => {
   discoveryProcess();
 });
 
+// discoveryProcess();
 
 // {"data":{"addRadioReport":{"name":"WEY998","last_reported":"1640952195","last_ip":"10.10.10.11"}}}
